@@ -12,14 +12,30 @@
             height: 100vh;
             margin: 0;
             background-color: #000;
+            flex-direction: column;
         }
         canvas {
             border: 1px solid #fff;
+        }
+        #retryButton {
+            display: none;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #0070ba;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #retryButton:hover {
+            background-color: #005ea6;
         }
     </style>
 </head>
 <body>
     <canvas id="gameCanvas" width="400" height="400"></canvas>
+    <button id="retryButton" onclick="simulatePayPalPayment()">Continue for $1</button>
     <script src="snake.js"></script>
 </body>
 </html>

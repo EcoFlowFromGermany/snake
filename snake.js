@@ -1,15 +1,17 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
+const retryButton = document.getElementById("retryButton");
 
 const box = 20;
 const canvasSize = 400;
-const snake = [{ x: 200, y: 200 }];
+let snake = [{ x: 200, y: 200 }];
 let food = {
     x: Math.floor(Math.random() * (canvasSize / box)) * box,
     y: Math.floor(Math.random() * (canvasSize / box)) * box
 };
 let direction = "RIGHT";
 let score = 0;
+let game;
 
 document.addEventListener("keydown", setDirection);
 
@@ -58,7 +60,8 @@ function drawGame() {
 
     if (snakeX < 0 || snakeX >= canvasSize || snakeY < 0 || snakeY >= canvasSize || collision(newHead, snake)) {
         clearInterval(game);
-        alert("Game Over");
+        retryButton.style.display = "block";
+        return;
     }
 
     snake.unshift(newHead);
@@ -77,4 +80,22 @@ function collision(head, array) {
     return false;
 }
 
-let game = setInterval(drawGame, 100);
+function simulatePayPalPayment() {
+    // Здесь происходит симуляция платежа через PayPal
+    alert("Payment successful! Continuing the game...");
+    retryButton.style.display = "none";
+    restartGame();
+}
+
+function restartGame() {
+    snake = [{ x: 200, y: 200 }];
+    direction = "RIGHT";
+    score = 0;
+    food = {
+        x: Math.floor(Math.random() * (canvasSize / box)) * box,
+        y: Math.floor(Math.random() * (canvasSize / box)) * box
+    };
+    game = setInterval(drawGame, 100);
+}
+
+game = setInterval(drawGame, 100);
